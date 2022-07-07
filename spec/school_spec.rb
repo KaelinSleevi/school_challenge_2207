@@ -35,19 +35,34 @@ RSpec.describe 'School Spec Harness' do
   end
 
   describe 'Iteration 2' do
-    it '2. School #add_student_name' do
+    it '2. School add_student_name' do
       expect(@school1).to respond_to(:add_student_name).with(1).argument
 
-      @school1.add_student_name('Megan')
+      @school1.add_student_name('megan')
       @school1.add_student_name('Aurora')
-      @school1.add_student_name('Tim')
+      @school1.add_student_name('tim')
 
-      expect(@school1.student_names).to eq(['Megan', 'Aurora', 'Tim'])
+      expect(@school1.student_names).to eq(['megan', 'Aurora', 'tim'])
     end
 
-    it '3. School #end_time' do
+    it '3. School end_time' do
       expect(@school1).to respond_to(:end_time).with(0).argument
       expect(@school1.end_time).to eq('16:00')
+    end
+
+    describe 'Iteration 3' do
+      it 'is full time' do
+        expect(@school1.is_full_time?).to eq(true)
+        expect(@school2.is_full_time?).to eq(false)
+      end
+
+      it 'has standard names' do
+        @school1.add_student_name('megan')
+        @school1.add_student_name('Aurora')
+        @school1.add_student_name('tim')
+
+        expect(@school1.standard_student_names).to eq(['Megan', 'Aurora', 'Tim'])
+      end
     end
   end
 end
